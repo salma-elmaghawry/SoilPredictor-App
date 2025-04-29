@@ -1,10 +1,10 @@
+// soil_predictor_cubit.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:soilpredictor/feature/home/data/api_service.dart';
 import 'package:soilpredictor/feature/home/data/models/soil_analysis_request_model.dart';
 import 'package:soilpredictor/feature/home/data/models/soil_analysis_response_model.dart';
-
 
 part 'soil_predictor_state.dart';
 
@@ -15,6 +15,11 @@ class SoilPredictorCubit extends Cubit<SoilPredictorState> {
     : super(SoilPredictorInitial());
 
   Future<void> analyzeSoil(SoilAnalysisRequest request) async {
+    if (request.file == null) {
+      emit( SoilPredictorError('Please select an image'));
+      return;
+    }
+
     emit(SoilPredictorLoading());
 
     try {

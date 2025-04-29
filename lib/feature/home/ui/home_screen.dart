@@ -5,7 +5,6 @@ import 'package:soilpredictor/core/helpers/app_text_styles.dart';
 import 'package:soilpredictor/core/widgets/custom_button.dart';
 import 'package:soilpredictor/feature/home/ui/inputs_screen.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -17,24 +16,12 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              SizedBox(height: 180),
-              Container(
-                margin: EdgeInsets.only(top: 50),
+              SizedBox(height: 250),
+              Image.asset(AppImages.logo, width: 150, height: 150),
+              const SizedBox(height: 20),
 
-                //fit image to the container
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColors.primary,
-                  image: DecorationImage(
-                    image: AssetImage(AppImages.sucess),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                width: 220,
-                height: 200,
-                alignment: Alignment.center,
-              ),
-              SizedBox(height: 20),
+             
+              SizedBox(height: 5),
               Text(
                 'Welcome to Soil Predictor !',
                 style: AppTextStyles.quicksand18BoldB(
@@ -49,10 +36,10 @@ class HomeScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: AppTextStyles.poppins12Regular(
                   color: Colors.grey,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               CustomButton(
                 title: 'Get Started',
                 onPressed: () {

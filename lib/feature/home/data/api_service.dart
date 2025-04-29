@@ -1,3 +1,4 @@
+// api_service.dart
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -9,8 +10,8 @@ class ApiService {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: AppConstants.baseUrl,
-      connectTimeout: const Duration(milliseconds: 5000),
-      receiveTimeout: const Duration(milliseconds: 3000),
+      connectTimeout: const Duration(minutes: 2),
+      receiveTimeout: const Duration(minutes: 2),
     ),
   );
 
@@ -28,42 +29,40 @@ class ApiService {
     );
   }
 
- Future<SoilAnalysisResponse> analyzeSoil(SoilAnalysisRequest request) async {
-  try {
-    final formData = FormData.fromMap({
-      'file': await MultipartFile.fromFile(
-        request.file.path,
-        filename: 'soil_image.jpg',
-      ),
-      'N': request.n,
-      'P': request.p,
-      'K': request.k,
-      'pH': request.pH,
-      'EC': request.ec,
-      'OC': request.oc,
-      'S': request.s,
-      'Zn': request.zn,
-      'Fe': request.fe,
-      'Cu': request.cu,
-      'Mn': request.mn,
-      'B': request.b,
-    });
+  Future<SoilAnalysisResponse> analyzeSoil(SoilAnalysisRequest request) async {
+    try {
+      final formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(
+          request.file!.path,
+          filename: 'soil_image.jpg',
+        ),
+        'N': request.n,
+        'P': request.p,
+        'K': request.k,
+        'pH': request.pH,
+        'EC': request.ec,
+        'OC': request.oc,
+        'S': request.s,
+        'Zn': request.zn,
+        'Fe': request.fe,
+        'Cu': request.cu,
+        'Mn': request.mn,
+        'B': request.b,
+      });
 
-    final response = await _dio.post(
-      '/predict',
-      data: formData,
-      options: Options(
-        contentType: 'multipart/form-data',
-      ),
-    );
-    
-    return SoilAnalysisResponse.fromJson(response.data);
-  } on DioException catch (e) {
-    throw _handleDioError(e);
-  } catch (e) {
-    throw Exception('Failed to analyze soil: $e');
+      final response = await _dio.post(
+        '/predict',
+        data: formData,
+        options: Options(contentType: 'multipart/form-data'),
+      );
+
+      return SoilAnalysisResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    } catch (e) {
+      throw Exception('Failed to analyze soil: $e');
+    }
   }
-}
 
   String _handleDioError(DioException e) {
     if (e.response?.data is Map<String, dynamic>) {
