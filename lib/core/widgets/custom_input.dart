@@ -13,6 +13,7 @@ class CustomInput extends StatelessWidget {
     this.isObsecureText,
     this.controller,
     this.validator,
+    this.keyboardType
   });
   double? radio;
   String? hintText;
@@ -22,6 +23,7 @@ class CustomInput extends StatelessWidget {
   bool? isObsecureText;
   TextEditingController? controller;
   String? Function(String?)? validator;
+  TextInputType? keyboardType = TextInputType.text;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class CustomInput extends StatelessWidget {
       validator: validator,
       controller: controller,
       obscureText: isObsecureText ?? false,
+      keyboardType: keyboardType,
       style: AppTextStyles.poppins14Regular(),
       cursorColor: AppColors.primary,
 
