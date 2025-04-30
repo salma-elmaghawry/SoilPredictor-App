@@ -5,38 +5,27 @@
 🌱SoilPredictor uses deep learning to classify soil types and analyze key soil nutrients directly from your camera input or image uploads, helping farmers, gardeners, and soil enthusiasts determine whether the soil conditions are right for planting.
 
 ---
-
 ## 📱 What is SoilPredictor?
 
-🌱SoilPredictor is an **AI-powered mobile app** that:
-- **Analyzes soil health** by predicting soil type and estimating important soil nutrients from images.
-- **Tells you if the soil is suitable for planting** based on key parameters such as:
-  - Soil type (Alluvial, Black, Clay, Red, etc.)
-  - ## Key Soil Nutrients
-- **Nitrogen (NH₄)**, **Phosphorus (P)**, **Potassium (K)**, **pH (Soil Acidity)**, **Electrical Conductivity (EC)**, **Sulfur (S)**, **Zinc (Zn)**, **Iron (Fe)**, **Copper (Cu)**, **Manganese (Mn)**, **Boron (B)**
+SoilPredictor is an **AI-powered mobile app** that empowers users to analyze soil health in just a few taps:
 
-
-- The app will analyze whether these nutrients and factors are in optimal ranges for planting, providing a clear response of whether the soil is **suitable** or **not suitable** for planting.
-  
-**Key Feature:**  
-The **Soil Suitability for Planting** is the app's **main functionality**, which provides an answer based on AI predictions:  
-- `"This soil is suitable for planting."`
-- `"This soil is not suitable for planting."`
-
+- 📸 Upload or capture a photo of the soil  
+- 🧪 **Predict the soil type** using a Transfer Learning model  
+- 🌿 **Assess planting suitability** with a Random Forest classifier  
 ---
 
-## 🎯 Key Features
 
-- 📸 **Capture or upload soil images** from your gallery or camera.
-- 🌍 **AI Soil Prediction**: Classifies soil types and predicts important soil nutrients (Nitrogen, Phosphorus, Potassium, etc.).
-- 🌱 **Soil Suitability for Planting**: Main functionality that evaluates if the soil is suitable for planting based on nutrient levels and soil type.
-- 📊 **Visualizations**: User-friendly UI that shows the prediction results and explains whether the soil is good for planting.
-- 🔄 Communication with the **AI-powered Flask server** via RESTful API.
 
----
 ## 📸 Screens
 ![screens](https://github.com/user-attachments/assets/f91463ee-97d6-4713-9d63-4d0639b865a5)
 
+
+---
+## 🎥 Demo Video
+
+Check out the video below to see the SoilPredictor App in action:
+
+[![Watch the video](https://img.youtube.com/vi/LqYhnOJHxtA/0.jpg)](https://youtu.be/LqYhnOJHxtA)
 
 ---
 
