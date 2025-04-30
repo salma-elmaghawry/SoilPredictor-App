@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:soilpredictor/core/helpers/app_colors.dart';
 import 'package:soilpredictor/core/helpers/app_images.dart';
-import 'package:soilpredictor/core/widgets/custom_button.dart';
+import 'package:soilpredictor/core/helpers/app_text_styles.dart';
+import 'package:soilpredictor/feature/home/ui/widgets/custom_button.dart';
 import 'package:soilpredictor/feature/home/data/models/soil_analysis_response_model.dart';
+import 'package:soilpredictor/feature/home/ui/screens/inputs_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final SoilAnalysisResponse response;
@@ -18,9 +20,10 @@ class ResultScreen extends StatelessWidget {
     final fertilityColor = isFertile ? AppColors.primary : AppColors.red;
     final messageTitle = isFertile ? "Congratulations!" : "Unfortunately";
     final submittedMessage = isFertile ? "Ok Good!" : "Try again";
-    final messageDescription = isFertile
-        ? "This soil is suitable for planting."
-        : "This soil is not suitable for planting.";
+    final messageDescription =
+        isFertile
+            ? "This soil is suitable for planting."
+            : "This soil is not suitable for planting.";
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -30,16 +33,15 @@ class ResultScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 150),
                 Text(
                   'Soil Analysis Results',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                  style: AppTextStyles.quicksand18BoldB(
                     color: AppColors.primary,
+                    fontSize: 24,
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 25),
                 Container(
                   width: 290,
                   padding: const EdgeInsets.all(16),
@@ -60,81 +62,64 @@ class ResultScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // Soil Type
                       RichText(
                         text: TextSpan(
                           children: [
-                            const TextSpan(
+                            TextSpan(
                               text: "Soil Type: ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                              style: AppTextStyles.quicksand18BoldB(
+                                color: AppColors.primary,
                                 fontSize: 18,
-                                color: Colors.black,
                               ),
                             ),
                             TextSpan(
                               text: response.soilType,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                              style: AppTextStyles.quicksand18BoldB(
+                                color: AppColors.textPrimary,
                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        'Probability: ${(response.soilTypeProbability * 100).toStringAsFixed(2)}%',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black54,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      // Fertility Text
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            const TextSpan(
-                              text: "Fertility: ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black,
-                              ),
-                            ),
-                            TextSpan(
-                              text: fertilityText,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: fertilityColor,
                               ),
                             ),
                           ],
                         ),
                       ),
                       const SizedBox(height: 15),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Fertility: ",
+                              style: AppTextStyles.quicksand18BoldB(
+                                color: AppColors.primary,
+                                fontSize: 18,
+                              ),
+                            ),
 
-                      // Message Title
-                      Text(
-                        messageTitle,
-                        style: TextStyle(
-                          color: fertilityColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                            TextSpan(
+                              text: fertilityText,
+                              style: AppTextStyles.quicksand18BoldB(
+                                color: fertilityColor,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 10),
 
-                      // Description
+                      Text(
+                        messageTitle,
+                        style: AppTextStyles.quicksand18BoldB(
+                          color: fertilityColor,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+
                       Text(
                         messageDescription,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black87,
+                        style: AppTextStyles.quicksand18BoldB(
+                          color: fertilityColor,
+                          fontSize: 16,
                         ),
                       ),
                     ],
@@ -145,7 +130,12 @@ class ResultScreen extends StatelessWidget {
                   width: 290,
                   title: submittedMessage,
                   onPressed: () {
-                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const InputsScreen(),
+                      ),
+                    );
                   },
                 ),
               ],

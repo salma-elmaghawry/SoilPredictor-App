@@ -7,7 +7,6 @@ import 'package:soilpredictor/feature/home/domain/cubit/soil_predictor_cubit.dar
 
 class SoilpredictorApp extends StatelessWidget {
   const SoilpredictorApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

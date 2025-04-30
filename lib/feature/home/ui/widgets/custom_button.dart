@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soilpredictor/core/helpers/app_colors.dart';
+import 'package:soilpredictor/core/helpers/app_text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -29,7 +30,10 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: const TextStyle(fontSize: 18, color: Colors.white),
+          style: AppTextStyles.quicksand18BoldB(
+            color: Colors.white,
+            fontSize: 20,
+          ),
         ),
       ),
     );
