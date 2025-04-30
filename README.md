@@ -35,7 +35,7 @@ The **Soil Suitability for Planting** is the app's **main functionality**, which
 
 ---
 ## 📸 Screens
-![Soil predictor](https://github.com/user-attachments/assets/92357214-2391-4a47-ada4-0e23627717e4)
+![screens](https://github.com/user-attachments/assets/f91463ee-97d6-4713-9d63-4d0639b865a5)
 
 
 ---
