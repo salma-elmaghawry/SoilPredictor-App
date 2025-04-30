@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:soilpredictor/core/helpers/app_colors.dart';
 import 'package:soilpredictor/core/helpers/app_images.dart';
 import 'package:soilpredictor/core/helpers/app_text_styles.dart';
-import 'package:soilpredictor/core/widgets/custom_button.dart';
+import 'package:soilpredictor/feature/home/ui/widgets/custom_button.dart';
 import 'package:soilpredictor/feature/home/data/models/soil_analysis_response_model.dart';
-import 'package:soilpredictor/feature/home/ui/inputs_screen.dart';
+import 'package:soilpredictor/feature/home/ui/screens/inputs_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final SoilAnalysisResponse response;
@@ -62,7 +62,6 @@ class ResultScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // Soil Type
                       RichText(
                         text: TextSpan(
                           children: [
@@ -106,7 +105,6 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // Message Title
                       Text(
                         messageTitle,
                         style: AppTextStyles.quicksand18BoldB(
@@ -116,7 +114,6 @@ class ResultScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
 
-                      // Description
                       Text(
                         messageDescription,
                         textAlign: TextAlign.center,

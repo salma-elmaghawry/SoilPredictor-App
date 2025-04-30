@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soilpredictor/core/helpers/app_constants.dart';
-import 'package:soilpredictor/feature/home/ui/home_screen.dart';
+import 'package:soilpredictor/feature/home/ui/screens/home_screen.dart';
 
 class AppRouter {
   static const String home = '/home';

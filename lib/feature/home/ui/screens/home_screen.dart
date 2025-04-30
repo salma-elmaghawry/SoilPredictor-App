@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soilpredictor/core/helpers/app_colors.dart';
 import 'package:soilpredictor/core/helpers/app_images.dart';
 import 'package:soilpredictor/core/helpers/app_text_styles.dart';
-import 'package:soilpredictor/core/widgets/custom_button.dart';
-import 'package:soilpredictor/feature/home/ui/inputs_screen.dart';
+import 'package:soilpredictor/feature/home/ui/widgets/custom_button.dart';
+import 'package:soilpredictor/feature/home/ui/screens/inputs_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

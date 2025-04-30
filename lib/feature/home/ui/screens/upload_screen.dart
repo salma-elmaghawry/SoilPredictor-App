@@ -4,19 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soilpredictor/core/helpers/app_colors.dart';
 import 'package:soilpredictor/core/helpers/app_images.dart';
 import 'package:soilpredictor/core/helpers/app_text_styles.dart';
-import 'package:soilpredictor/core/widgets/build_option_card.dart';
+import 'package:soilpredictor/feature/home/ui/widgets/build_option_card.dart';
+import 'package:soilpredictor/feature/home/ui/widgets/show_dialog.dart';
 import 'dart:io';
-
 import 'package:soilpredictor/feature/home/data/models/soil_analysis_request_model.dart';
 import 'package:soilpredictor/feature/home/domain/cubit/soil_predictor_cubit.dart';
-import 'package:soilpredictor/feature/home/ui/result_screen.dart';
+import 'package:soilpredictor/feature/home/ui/screens/result_screen.dart';
 
 class UploadScreen extends StatelessWidget {
   final SoilAnalysisRequest request;
 
   const UploadScreen({Key? key, required this.request}) : super(key: key);
 
-  Future<void> _pickImage(BuildContext context, ImageSource source) async {
+  Future<void> pickImage(BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
     try {
       final pickedFile = await picker.pickImage(source: source);
@@ -24,7 +24,6 @@ class UploadScreen extends StatelessWidget {
         final imageFile = File(pickedFile.path);
         final completeRequest = request.copyWith(file: imageFile);
 
-        // Start the analysis
         context.read<SoilPredictorCubit>().analyzeSoil(completeRequest);
       }
     } catch (e) {
@@ -81,8 +80,6 @@ class UploadScreen extends StatelessWidget {
                 ),
               );
             }
-
-            // Normal UI when not loading
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -105,27 +102,22 @@ class UploadScreen extends StatelessWidget {
                         onPressed: () => Navigator.pop(context),
                       ),
                     ),
-
                     const SizedBox(height: 80),
-
-                    // Upload Image Card
                     Center(
                       child: buildOptionCard(
                         context,
                         assetImage: AppImages.photo,
                         text: 'Upload the soil image\nyou want to process',
-                        onTap: () => _pickImage(context, ImageSource.gallery),
+                        onTap: () => pickImage(context, ImageSource.gallery),
                       ),
                     ),
-                    const SizedBox(height: 40),
-
-                    // Take Picture Card
+                  const SizedBox(height: 40),
                     Center(
                       child: buildOptionCard(
                         context,
                         assetImage: AppImages.camera,
                         text: 'Take a picture of the soil',
-                        onTap: () => _pickImage(context, ImageSource.camera),
+                        onTap: () => pickImage(context, ImageSource.camera),
                       ),
                     ),
                   ],
@@ -135,38 +127,6 @@ class UploadScreen extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-
-  Future<dynamic> showdialog(
-    BuildContext context,
-    SoilPredictorError state, {
-    String title = 'Error',
-    String buttonText = 'OK',
-  }) {
-    return showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            backgroundColor: AppColors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            title: Text(title),
-            content: Text(state.message),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  buttonText,
-                  style: AppTextStyles.poppins14Regular(
-                    color: AppColors.primary,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
     );
   }
 }
