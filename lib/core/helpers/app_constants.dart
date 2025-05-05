@@ -1,8 +1,4 @@
 class AppConstants {
   static const String home = '/home';
-  static const String baseUrl = "http://172.203.221.239:8000";
-
-
-  
- 
+  static const String baseUrl = "http://20.127.220.170:8000";
 }
