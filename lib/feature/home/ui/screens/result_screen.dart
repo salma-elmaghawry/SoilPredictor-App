@@ -14,16 +14,21 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFertile = response.fertility.toLowerCase() == 'fertile';
+    bool isFertile = false;
+    String status = response.fertility;
+    if (status == "Suitable for cultivation") {
+      isFertile = true;
+    } else if (status == "Not suitable for cultivation") {
+      isFertile = false;
+    } else {
+      isFertile = false;
+    }
+
     final imagePath = isFertile ? AppImages.sucess : AppImages.fail;
-    final fertilityText = isFertile ? "Fertile" : "Not Fertile";
+    //final fertilityText = isFertile ? "Fertile" : "Not Fertile";
     final fertilityColor = isFertile ? AppColors.primary : AppColors.red;
-    final messageTitle = isFertile ? "Congratulations!" : "Unfortunately";
+    //final messageTitle = isFertile ? "Congratulations!" : "Unfortunately";
     final submittedMessage = isFertile ? "Ok Good!" : "Try again";
-    final messageDescription =
-        isFertile
-            ? "This soil is suitable for planting."
-            : "This soil is not suitable for planting.";
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -83,39 +88,19 @@ class ResultScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 15),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Fertility: ",
-                              style: AppTextStyles.quicksand18BoldB(
-                                color: AppColors.primary,
-                                fontSize: 18,
-                              ),
-                            ),
-
-                            TextSpan(
-                              text: fertilityText,
-                              style: AppTextStyles.quicksand18BoldB(
-                                color: fertilityColor,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
                       Text(
-                        messageTitle,
+                        "Fertility:",
                         style: AppTextStyles.quicksand18BoldB(
-                          color: fertilityColor,
+                          color: AppColors.primary,
                           fontSize: 18,
                         ),
+                        textAlign: TextAlign.center,
                       ),
+
                       const SizedBox(height: 15),
 
                       Text(
-                        messageDescription,
+                        response.fertility,
                         textAlign: TextAlign.center,
                         style: AppTextStyles.quicksand18BoldB(
                           color: fertilityColor,
